@@ -34,6 +34,11 @@ def inStorge():
     times = year + "-" + month + "-" + day
     folt = year + month + day
     ins = {
+        "Creator": "",
+        "IsEntryBatchFill": "true",
+        "ValidateFlag": "true",
+        "NumberSearch": "true",
+        "IsAutoSubmitAndAudit": "true",
         "Model": {
             "FBillType": {  # 单据类型
                 "FNUMBER": "SCRKD01_SYS"
@@ -49,26 +54,28 @@ def inStorge():
                 "FNumber": "101.02"
             },
             "FEntity": [{
+                "FEntryID": 0,
                 "FSrcEntryId": int(jsondata["id11"]),  # 源单分录内码
-                # "FIsNew": False,
+                "FIsNew": "false",
                 "FMaterialId": {  # 物料代码
                     "FNumber": jsondata["id2"]
                 },
                 "FInStockType": "1",  # 入库类型
-                "FUnitID": {  # 单位
-                    "FNumber": "jian"
+                "FStockId": {  # 仓库
+                    "FNumber": "CK022"
                 },
-                "FBaseUnitId": {  # 单位
+                "FProductType": "1",
+                "FUnitID": {  # 单位
                     "FNumber": "jian"
                 },
                 "FMustQty": float(jsondata["id7"]),  # 应收数量
                 "FRealQty": float(jsondata["id8"]),  # 实收数量
+                "FBaseUnitId": {  # 单位
+                    "FNumber": "jian"
+                },
                 "FOwnerTypeId": "BD_OwnerOrg",  # 货主类型
                 "FOwnerId": {  # 货主
                     "FNumber": "101.02"
-                },
-                "FStockId": {  # 仓库
-                    "FNumber": "CK022"
                 },
                 "FLot": {  # 批号
                     "FNumber": folt
